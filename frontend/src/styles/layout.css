@@ -1,0 +1,54 @@
+/* ============================================================
+   全局布局样式
+   ============================================================ */
+
+:root {
+  --brand-color: #ff8400;
+}
+
+/* Logo 区域 */
+.layout-logo {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.layout-logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+.layout-logo-icon {
+  font-size: 24px;
+}
+
+/* 内容区域卡片 */
+.page-card {
+  background: var(--ant-color-bg-container);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* 统计卡片 */
+.stat-card {
+  border-radius: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .layout-logo-text {
+    font-size: 14px;
+  }
+}

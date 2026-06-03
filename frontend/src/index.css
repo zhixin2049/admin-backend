@@ -1,0 +1,170 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* ============================================================
+   导航菜单文字颜色强制覆盖
+   默认: rgba(255,255,255,1) | hover: #ff8400
+   选中态/激活态保持白色不变
+   antd 内部用 .ant-menu-title-content 包裹文字，必须覆盖它
+   ============================================================ */
+
+/* 桌面端 — 所有状态默认白色（双类名 + 后代选择器提权） */
+.navbar-menu.ant-menu .ant-menu-title-content,
+.navbar-menu.ant-menu.ant-menu-horizontal .ant-menu-item,
+.navbar-menu.ant-menu.ant-menu-horizontal .ant-menu-submenu-title,
+.navbar-menu.ant-menu.ant-menu-horizontal > .ant-menu-submenu > .ant-menu-submenu-title,
+.navbar-menu.ant-menu .ant-menu-item a,
+.navbar-menu.ant-menu .ant-menu-submenu-title a,
+.navbar-menu.ant-menu-light .ant-menu-title-content,
+.navbar-menu.ant-menu-light .ant-menu-item,
+.navbar-menu.ant-menu-light .ant-menu-submenu-title {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+/* hover 变橙色 */
+.navbar-menu.ant-menu .ant-menu-title-content:hover,
+.navbar-menu.ant-menu .ant-menu-item:hover,
+.navbar-menu.ant-menu .ant-menu-submenu-title:hover,
+.navbar-menu.ant-menu .ant-menu-item:hover .ant-menu-title-content,
+.navbar-menu.ant-menu .ant-menu-submenu-title:hover .ant-menu-title-content,
+.navbar-menu.ant-menu .ant-menu-item:hover a,
+.navbar-menu.ant-menu .ant-menu-submenu-title:hover a,
+.navbar-menu.ant-menu.ant-menu-horizontal > .ant-menu-submenu:hover > .ant-menu-submenu-title {
+  color: #ff8400 !important;
+}
+
+/* selected / active / open — 始终白色，不让 antd 高亮色污染 */
+.navbar-menu.ant-menu .ant-menu-item-selected,
+.navbar-menu.ant-menu .ant-menu-item-selected .ant-menu-title-content,
+.navbar-menu.ant-menu .ant-menu-item-selected a,
+.navbar-menu.ant-menu .ant-menu-item-active,
+.navbar-menu.ant-menu .ant-menu-item-active .ant-menu-title-content,
+.navbar-menu.ant-menu .ant-menu-submenu-open > .ant-menu-submenu-title,
+.navbar-menu.ant-menu .ant-menu-submenu-open > .ant-menu-submenu-title .ant-menu-title-content,
+.navbar-menu.ant-menu .ant-menu-submenu-selected > .ant-menu-submenu-title,
+.navbar-menu.ant-menu .ant-menu-submenu-selected > .ant-menu-submenu-title .ant-menu-title-content {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+/* 子菜单弹层 */
+.ant-menu-submenu-popup.ant-menu .ant-menu-title-content,
+.ant-menu-submenu-popup.ant-menu .ant-menu-item,
+.ant-menu-submenu-popup.ant-menu .ant-menu-item a {
+  color: rgba(255, 255, 255, 1) !important;
+}
+.ant-menu-submenu-popup.ant-menu .ant-menu-item:hover,
+.ant-menu-submenu-popup.ant-menu .ant-menu-item:hover .ant-menu-title-content,
+.ant-menu-submenu-popup.ant-menu .ant-menu-item:hover a {
+  color: #ff8400 !important;
+  background-color: rgba(255, 132, 0, 0.15) !important;
+}
+
+/* 移动端 Drawer 内菜单 */
+.navbar-menu-mobile.ant-menu .ant-menu-title-content,
+.navbar-menu-mobile.ant-menu .ant-menu-item,
+.navbar-menu-mobile.ant-menu .ant-menu-submenu-title,
+.navbar-menu-mobile.ant-menu .ant-menu-item a,
+.navbar-menu-mobile.ant-menu .ant-menu-submenu-title a {
+  color: rgba(255, 255, 255, 1) !important;
+}
+.navbar-menu-mobile.ant-menu .ant-menu-item:hover,
+.navbar-menu-mobile.ant-menu .ant-menu-item:hover .ant-menu-title-content,
+.navbar-menu-mobile.ant-menu .ant-menu-submenu-title:hover {
+  color: #ff8400 !important;
+}
+
+/* ============================================================
+   导航右侧按钮（登录/注册/退出）— antd Button 样式覆盖
+   禁用 antd 内置 hover，让内联 onMouseEnter/Leave 完全控制
+   ============================================================ */
+.navbar-btn.ant-btn {
+  height: auto;
+  line-height: 1.5;
+  box-shadow: none;
+}
+.navbar-btn.ant-btn:hover,
+.navbar-btn.ant-btn:focus,
+.navbar-btn.ant-btn:active {
+  box-shadow: none;
+  outline: none;
+}
+/* 登录/退出按钮：默认 outline 样式，禁用 antd hover 变色 */
+.navbar-btn.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: inherit;
+  border-color: inherit;
+}
+/* 注册按钮：primary 样式，禁用 antd hover 加深 */
+.navbar-btn.ant-btn-primary {
+  box-shadow: none;
+}
+.navbar-btn.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover,
+.navbar-btn.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):active {
+  background: #ff8400;
+  box-shadow: none;
+}
