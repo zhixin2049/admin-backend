@@ -2,8 +2,17 @@
 node_modules/
 package-lock.json
 
+# Frontend Dependencies
+frontend/node_modules/
+frontend/package-lock.json
+
+# Backend Dependencies
+backend/node_modules/
+backend/package-lock.json
+
 # Build output
 dist/
+frontend/dist/
 
 # Database
 prisma/dev.db
@@ -13,10 +22,13 @@ prisma/dev.db-journal
 .env
 .env.local
 .env.*.local
+frontend/.env
+frontend/.env.local
 
 # Logs
 *.log
 npm-debug.log*
+frontend/*.log
 
 # OS
 .DS_Store
@@ -30,6 +42,12 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+frontend/*.tsbuildinfo
+frontend/tsconfig.tsbuildinfo
 
 # Test
 coverage/
+
+# Temp files
+*.tmp
+*.temp
