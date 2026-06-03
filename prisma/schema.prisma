@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Permission {
+  id       Int    @id @default(autoincrement())
+  resource String
+  action   String
+  name     String
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  isPreset  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  admins    Admin[]
+}
+
+model Admin {
+  id          Int      @id @default(autoincrement())
+  username    String   @unique
+  email       String
+  password    String
+  roleId      Int
+  role        Role     @relation(fields: [roleId], references: [id])
+  status      Int      @default(1)
+  lastLoginAt DateTime?
+  createdAt   DateTime @default(now())
+}
+
+model Member {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  phone        String   @unique
+  password     String
+  gender       Int      @default(0)
+  province     String
+  avatar       String?
+  registeredAt DateTime @default(now())
+  lastLoginAt  DateTime?
+  status       Int      @default(1)
+}
+
+model Carousel {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String
+  category  String
+  majorId   Int?
+  linkUrl   String
+  sortOrder Int      @default(1)
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model MajorCategory {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String
+  iconText    String
+  iconBgColor String
+  sortOrder   Int      @default(1)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model VideoGroup {
+  id        Int      @id @default(autoincrement())
+  groupKey  String   @unique
+  groupName String
+  moreUrl   String
+  sortOrder Int      @default(1)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  videos    Video[]
+}
+
+model Video {
+  id             Int      @id @default(autoincrement())
+  title          String
+  playerTitle    String
+  bilibiliUrl    String
+  organizer      String
+  organizedDate  String
+  groupId        Int
+  group          VideoGroup @relation(fields: [groupId], references: [id])
+  majorIds       String
+  description    String
+  seoTitle       String?
+  seoDescription String?
+  seoKeywords    String?
+  canonicalUrl   String?
+  isVisible      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+}
+
+model SiteSettings {
+  id              Int      @id @default(autoincrement())
+  siteName        String
+  siteDescription String
+  siteKeywords    String
+  userAgreement   String
+  updatedAt       DateTime @updatedAt
+}
+
+model NavMenu {
+  id          Int      @id @default(autoincrement())
+  parentId    Int?
+  displayName String
+  linkType    String
+  linkUrl     String
+  openNewTab  Boolean  @default(false)
+  sortOrder   Int      @default(1)
+  isVisible   Boolean  @default(true)
+}
+
+model FooterItem {
+  id        Int      @id @default(autoincrement())
+  content   String
+  sortOrder Int      @default(1)
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
